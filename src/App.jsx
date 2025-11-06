@@ -7,6 +7,9 @@ import Shop from "./Components/Pages/Shop";
 import Error from "./Components/Pages/Error";
 import { Contact } from "./Components/Pages/Contact";
 import Journal from "./Components/Pages/Journal";
+import SignUp from "./Components/Pages/SignUp";
+import Login from "./Components/Pages/Login";
+import UserDashboard from "./Components/Pages/UserDashboard";
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="journal" element={<Journal />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="login" element={<Login />} />
+          <Route path="userdashboard" element={<UserDashboard />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

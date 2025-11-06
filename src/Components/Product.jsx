@@ -28,7 +28,7 @@ const Product = ({
     );
   };
   return (
-    <div className="mx-4 bg-gray-100 ">
+    <div className="mx-4 bg-gray-200 ">
       <div className="relative group">
         <Image imgSrc={productImg} className={`w-full`} />
         <Badge
@@ -58,10 +58,10 @@ const Product = ({
       </div>
       <div className="py-6 px-1 ">
         <h4
-          className={`flex justify-between items-center  font-bold text-[20px] text-text `}
+          className={`flex justify-between items-start  font-bold text-[20px] text-text text-left`}
         >
           {productText}
-          <span className={`font-normal text-[16px] text-[#767676] `}>
+          <span className={`font-normal text-[16px] pt-1 text-[#767676] text-right`}>
             ${productPrice}
           </span>
         </h4>

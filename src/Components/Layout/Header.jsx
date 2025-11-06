@@ -3,7 +3,7 @@ import Container from "../Container";
 import Flex from "../Flex";
 import Image from "../Image";
 import Logo from "/src/assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, Links } from "react-router-dom";
 import { HiOutlineBars2 } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 const Header = ({searchQuery, onSearchChange}) => {
   const [showCategory, setCategory] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [showUser, setShowUser] = useState(false);
   const dropdownRef = useRef(null);
 
   const handleCategory = () => {
@@ -54,6 +55,10 @@ const Header = ({searchQuery, onSearchChange}) => {
 
 
   // console.log(grandTotal);
+
+  const handleUser =()=>{
+setShowUser(!showUser)
+  }
   
 
   return (
@@ -154,9 +159,18 @@ const Header = ({searchQuery, onSearchChange}) => {
               </div>
               <div className="relative">
                 <Flex className="text-[14px] gap-x-5">
-                  <div className="flex gap-x-1">
+                  <div onClick={handleUser} className="flex gap-x-1 relative">
                     <FaUser />
                     <FaCaretDown />
+                    {showUser && (
+                    <div className="absolute top-[20px] right-0 p-5 bg-gray-300   text-[26px] rounded-2xl">
+                      <Link to={"userdashboard"}><p className=" leading-12 ">Dashboard</p></Link>
+                      <Link to={"login"}><p className=" leading-12 ">Login</p></Link>
+                      <Link to={"signup"}><p className=" leading-12">Sign Up</p></Link>
+                      
+                    </div>
+                    )}
+
                   </div>
                   <FaShoppingCart onClick={handleShowCart} />
                 </Flex>

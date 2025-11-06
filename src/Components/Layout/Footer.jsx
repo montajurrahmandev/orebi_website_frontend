@@ -7,7 +7,7 @@ import Logo from "/src/assets/logo.png";
 const Footer = () => {
   return (
     <>
-      <div className="bg-[#d1cdcd] py-10">
+      <div className="bg-[#d1cdcd] py-10 mt-24">
         <Container>
           <Flex className={"justify-between items-start w-5/6"}>
             <div className="">
