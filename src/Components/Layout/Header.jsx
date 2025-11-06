@@ -6,11 +6,11 @@ import Logo from "/src/assets/logo.png";
 import { Link, Links } from "react-router-dom";
 import { HiOutlineBars2 } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
-import { FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
+import { FaUser, FaCaretDown, FaShoppingCart, FaShare } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 
-const Header = ({searchQuery, onSearchChange}) => {
+const Header = ({ searchQuery, onSearchChange }) => {
   const [showCategory, setCategory] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showUser, setShowUser] = useState(false);
@@ -36,7 +36,6 @@ const Header = ({searchQuery, onSearchChange}) => {
   }, []);
 
   const handleShowCart = () => {
-
     setShowCart(!showCart);
   };
   let data = useSelector((state) => state.cart.value);
@@ -46,20 +45,15 @@ const Header = ({searchQuery, onSearchChange}) => {
   //   return accumulator + (currentItem.price * currentItem.quantity);
   // }, 0); // The '0' is the starting value for the accumulator
 
-  const grandTotal = data.reduce((Total,currentItem)=>{
-    return Total + (currentItem.price * currentItem.quantity)
-  },0)
-
-
-  
-
+  const grandTotal = data.reduce((Total, currentItem) => {
+    return Total + currentItem.price * currentItem.quantity;
+  }, 0);
 
   // console.log(grandTotal);
 
-  const handleUser =()=>{
-setShowUser(!showUser)
-  }
-  
+  const handleUser = () => {
+    setShowUser(!showUser);
+  };
 
   return (
     <>
@@ -163,19 +157,23 @@ setShowUser(!showUser)
                     <FaUser />
                     <FaCaretDown />
                     {showUser && (
-                    <div className="absolute top-[20px] right-0 p-5 bg-gray-300   text-[26px] rounded-2xl">
-                      <Link to={"userdashboard"}><p className=" leading-12 ">Dashboard</p></Link>
-                      <Link to={"login"}><p className=" leading-12 ">Login</p></Link>
-                      <Link to={"signup"}><p className=" leading-12">Sign Up</p></Link>
-                      
-                    </div>
+                      <div className="absolute top-[20px] right-0 p-5 bg-gray-300   text-[26px] rounded-2xl">
+                        <Link to={"userdashboard"}>
+                          <p className=" leading-12 ">Dashboard</p>
+                        </Link>
+                        <Link to={"login"}>
+                          <p className=" leading-12 ">Login</p>
+                        </Link>
+                        <Link to={"signup"}>
+                          <p className=" leading-12">Sign Up</p>
+                        </Link>
+                      </div>
                     )}
-
                   </div>
                   <FaShoppingCart onClick={handleShowCart} />
                 </Flex>
-                {showCart &&  (
-                  <div className="bg-neutral-400 p-3 w-[600px] absolute right-0 top-[110%] ">
+                {showCart && (
+                  <div className="bg-neutral-400 p-3 w-[600px] absolute right-0 top-[110%] z-50">
                     <RxCross2 onClick={() => setShowCart(!showCart)} />
                     <ul className="flex justify-between pt-2 text-white text-[16px] border-b-2 border-white">
                       <li className="w-[170px]">Title</li>
@@ -186,23 +184,28 @@ setShowUser(!showUser)
                     </ul>
                     {data.map((item) => (
                       <>
-                        
-                          <ul className="flex justify-between pt-2 text-white text-[14px] ">
-                            <li className="w-[160px]">{item.title}</li>
-                            <li>${item.price} </li>
-                            <li>
-                              <img src={item.img} alt="" className="h-10" />
-                            </li>
-                            <li>{item.quantity}</li>
-                            <li>${item.price * item.quantity}</li>
-                          </ul>
-                       
+                        <ul className="flex justify-between pt-2 text-white text-[14px] ">
+                          <li className="w-[160px]">{item.title}</li>
+                          <li>${item.price} </li>
+                          <li>
+                            <img src={item.img} alt="" className="h-10" />
+                          </li>
+                          <li>{item.quantity}</li>
+                          <li>${item.price * item.quantity}</li>
+                        </ul>
                       </>
                     ))}
-                    <div className=" text-black text-[18px] pt-2 gap-x-2 flex items-center justify-end ">Total : <span>${grandTotal.toFixed(2)}</span></div>
+                    <div className=" text-black text-[18px] pt-2 gap-x-2 flex items-center justify-end ">
+                      Total : <span>${grandTotal.toFixed(2)}</span>
+                    </div>
+                    <Link to={"cart"}>
+                      <div className="flex items-center text-text">
+                        <FaShare />
+                        <p>View Full Page</p>
+                      </div>
+                    </Link>
                   </div>
                 )}
-               
               </div>
             </Flex>
           </Container>

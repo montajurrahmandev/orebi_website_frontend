@@ -10,6 +10,8 @@ import Journal from "./Components/Pages/Journal";
 import SignUp from "./Components/Pages/SignUp";
 import Login from "./Components/Pages/Login";
 import UserDashboard from "./Components/Pages/UserDashboard";
+import Cart from "./Components/Pages/Cart";
+import Checkout from "./Components/Pages/Checkout";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="journal" element={<Journal />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
           <Route path="userdashboard" element={<UserDashboard />} />
