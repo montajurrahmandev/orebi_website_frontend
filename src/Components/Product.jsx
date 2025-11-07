@@ -30,7 +30,7 @@ const Product = ({
   return (
     <div className="mx-4 bg-gray-200 ">
       <div className="relative group">
-        <Image imgSrc={productImg} className={`w-full`} />
+        <Link to={"/product_inside"}><Image imgSrc={productImg} className={`w-full`} /></Link>
         <Badge
           badgeText={badgeText}
           className={`absolute top-[7%] left-[7%]`}
@@ -56,7 +56,7 @@ const Product = ({
           </div>
         </div>
       </div>
-      <div className="py-6 px-1 ">
+      <div className="py-6 px-1 bg-gray-100">
         <h4
           className={`flex justify-between items-start  font-bold text-[20px] text-text text-left`}
         >

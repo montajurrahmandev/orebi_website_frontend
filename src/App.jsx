@@ -12,6 +12,7 @@ import Login from "./Components/Pages/Login";
 import UserDashboard from "./Components/Pages/UserDashboard";
 import Cart from "./Components/Pages/Cart";
 import Checkout from "./Components/Pages/Checkout";
+import Product_Inside from "./Components/Pages/Product_Inside";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
           <Route path="shop" element={<Shop />} />
+          <Route path="product_inside" element={<Product_Inside />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="journal" element={<Journal />} />
