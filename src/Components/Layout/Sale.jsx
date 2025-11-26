@@ -8,15 +8,15 @@ import { Link } from "react-router-dom";
 
 const Sale = () => {
   return (
-    <div className="py-[100px]">
+    <div className="pb-[50px] md:pb-[100px]">
       <Container>
-        <Flex className={"items-start gap-x-4"}>
+        <Flex className={"flex-col md:flex-row md:items-start gap-y-4 md:gap-x-4 "}>
           <div className="">
             <Link to={"shop"}>
               <img src={SaleOne} />
             </Link>
           </div>
-          <div className="flex flex-col justify-between h-[650px]">
+          <div className="flex flex-col gap-y-4 md:justify-between md:h-[650px]">
             <Link to={"shop"}>
               <img src={SaleTwo} />
             </Link>

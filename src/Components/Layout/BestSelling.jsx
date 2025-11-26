@@ -1,29 +1,19 @@
-import Container from "../Container";
-
-import Product from "../Product";
-import { Link } from "react-router-dom";
-
-import Image from "../Image";
-import ShopNow from "/src/assets/ShopNow.png";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import NextArrow from "../NextArrow";
-import PrevArrow from "../PrevArrow";
+import { useEffect, useState } from "react";
+import Container from "../Container";
+import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import Product from "../Product";
+import ShopNow from "/src/assets/ShopNow.png"
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css";
+import Image from "../Image";
+
 
 const BestSelling = () => {
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 2,
-        nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-  };
 
   // ================
   const [allData, setAllData] = useState([]);
@@ -37,37 +27,62 @@ const BestSelling = () => {
 
   return (
     <>
-      <div className="pt-[100px]">
+      <div className="py-[30px] md:py-[60px]">
         <Container>
           <div className="flex items-center justify-between">
-            <h3 className="font-bold text-4xl text-[#262626] ">
+           <h3 className="font-bold text-2xl md:text-4xl text-[#262626]">
               Our Bestsellers
             </h3>
             <Link to={"shop"}>
-              <h4 className="font-bold text-2xl  text-link">see all</h4>
+              <h4 className="font-bold text-lg md:text-2xl text-link">see all</h4>
             </Link>
           </div>
 
-          <div className="pt-10 -mx-4">
-            <Slider {...settings}>
-              {
-              allData.map((item) => (
-                <div>
-                  <Product
-                    badgeText={`${item.discountPercentage}%`}
-                    productImg={item.thumbnail}
-                    productText={item.title}
-                    productPrice={item.price}
-                  />
-                </div>
-              ))
-              }
-            </Slider>
-          </div>
+ <div className="pt-5 md:pt-10 w-full">
+          <Swiper
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            spaceBetween={50}
+            slidesPerView={4}
+            navigation
+            pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+            breakpoints={{
+              // Mobile  0-639
+              0: {
+                slidesPerView: 1,
+              },
+              // Small devices (≥640px)
+              640: {
+                slidesPerView: 2,
+              },
+              // Medium devices (≥768px)
+              768: {
+                slidesPerView: 3,
+              },
+              // Large devices (≥1024px)
+              1024: {
+                slidesPerView: 4,
+              },
+            }}
+          >
+            {allData.map((item) => (
+              <SwiperSlide key={item.id}>
+                <Product
+                  badgeText={`${item.discountPercentage}%`}
+                  productImg={item.thumbnail}
+                  productText={item.title}
+                  productPrice={item.price}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
-          <div className="py-[80px]">
-            <Link to={"/shop"}>
-              <Image imgSrc={ShopNow} />
+          <div className="py-[40px] md:py-[80px] ">
+            <Link to={"/shop"} className="block">
+              <Image imgSrc={ShopNow} className={""} />
             </Link>
           </div>
         </Container>

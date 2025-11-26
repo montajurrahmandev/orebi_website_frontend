@@ -26,7 +26,7 @@ const Product = ({
     );
   };
   return (
-    <div className="mx-4 bg-gray-200 ">
+    <div className=" bg-gray-200 ">
       <div className="relative group">
         <Link to={"/product_inside"}>
           <Image imgSrc={productImg} className={`w-full`} />

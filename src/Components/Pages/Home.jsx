@@ -9,13 +9,16 @@ import SpecialOffer from '../Layout/SpecialOffer'
 
 
 
+
+
 const Home = () => {
   return (
     <>
     <Banner/>
-    <Terms/>
+    <Terms/> 
     <Sale/>
     <NewArrival/> 
+
     <BestSelling/>
     <SpecialOffer/>
 
