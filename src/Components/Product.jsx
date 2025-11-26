@@ -14,6 +14,7 @@ const Product = ({
   productText,
   productPrice,
   productColorName,
+  className
 }) => {
   let dispatch = useDispatch();
   const handleAddToCart = () => {
@@ -26,7 +27,7 @@ const Product = ({
     );
   };
   return (
-    <div className=" bg-gray-200 ">
+    <section className={" bg-gray-200 "+ className}>
       <div className="relative group">
         <Link to={"/product_inside"}>
           <Image imgSrc={productImg} className={`w-full`} />
@@ -50,7 +51,7 @@ const Product = ({
           </Link>
           <div
             onClick={handleAddToCart}
-            className="flex items-center justify-end gap-x-2 text-[16px] text-[#767676] hover:text-text hover:font-bold"
+            className="flex items-center justify-end gap-x-2 text-[16px] text-[#767676] hover:text-text hover:font-bold cursor-pointer"
           >
             Add to Cart <FaCartShopping className="text-[#262626]" />
           </div>
@@ -73,7 +74,7 @@ const Product = ({
           className="text-[16px] text-[#767676] "
         />
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -5,7 +5,7 @@ import { FaCaretUp } from "react-icons/fa";
 const Sidebar = () => {
   return (
     <>
-      <div className="w-[272px] pr-4">
+      <div className="">
         <div className="text-[#767676]">
           <Heading
             className="text-[20px] font-bold text-black pt-6 pb-4"
@@ -24,7 +24,7 @@ const Sidebar = () => {
           <div className="text-black flex justify-between items-center">
             <Heading
               className="text-[20px] font-bold pt-6 pb-4"
-              text="Shop by Color"
+              text="Shop by Color" 
               as="h4"
             />
             <FaCaretUp />
