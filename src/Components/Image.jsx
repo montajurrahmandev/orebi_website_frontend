@@ -2,7 +2,7 @@
 
 const Image = ({className,imgSrc,imgAlt}) => {
   return (
-    <img className={`${className}`} src={imgSrc} alt={imgAlt} />
+    <img className={`w-full h-auto ${className}`} src={imgSrc} alt={imgAlt} />
   )
 }
 

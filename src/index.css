@@ -1,4 +1,6 @@
 
 body{
     font-family: "DM Sans", sans-serif;
+    outline: none;
+    background: rgb(161, 159, 159);
 } 

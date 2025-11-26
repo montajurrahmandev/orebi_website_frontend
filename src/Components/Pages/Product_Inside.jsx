@@ -14,6 +14,7 @@ const Product_Inside = () => {
   //   if (onColorSelect) onColorSelect(color);
   // };
   return (
+    
     <Container>
       <div className="py-3">
         <p className="flex items-center gap-x-2 ">

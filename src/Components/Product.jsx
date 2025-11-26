@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 
 const Product = ({
   productImg,
-
   badgeText,
   productText,
   productPrice,
@@ -23,14 +22,15 @@ const Product = ({
         title: productText,
         img: productImg,
         price: productPrice,
-        
       })
     );
   };
   return (
     <div className="mx-4 bg-gray-200 ">
       <div className="relative group">
-        <Link to={"/product_inside"}><Image imgSrc={productImg} className={`w-full`} /></Link>
+        <Link to={"/product_inside"}>
+          <Image imgSrc={productImg} className={`w-full`} />
+        </Link>
         <Badge
           badgeText={badgeText}
           className={`absolute top-[7%] left-[7%]`}
@@ -61,7 +61,9 @@ const Product = ({
           className={`flex justify-between items-start  font-bold text-[20px] text-text text-left`}
         >
           {productText}
-          <span className={`font-normal text-[16px] pt-1 text-[#767676] text-right`}>
+          <span
+            className={`font-normal text-[16px] pt-1 text-[#767676] text-right`}
+          >
             ${productPrice}
           </span>
         </h4>
