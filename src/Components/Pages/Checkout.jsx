@@ -3,14 +3,21 @@ import Container from "../Container";
 import Heading from "../Heading";
 import { PiGreaterThan } from "react-icons/pi";
 import RouteDisplay from "../Layout/RouteDisplay";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
+  const data = useSelector((state) => state.cart.value);
+
+  const grandTotal = data.reduce((total, currentItem) => {
+    return total + currentItem.price * currentItem.quantity;
+  }, 0);
+
   return (
     <Container>
-        <div>
-          <RouteDisplay className="" route="Checkout" />
-        </div>
-      
+      <div>
+        <RouteDisplay className="" route="Checkout" />
+      </div>
+
       <p className="pt-8 md:pt-16">
         Have a coupon?{" "}
         <span className="text-text">Click here to enter your code</span>
@@ -136,7 +143,7 @@ const Checkout = () => {
                 type="text"
                 id="last_name"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="64537"
+                placeholder="12345"
                 required
               />
             </div>
@@ -174,7 +181,7 @@ const Checkout = () => {
             />
           </div>
 
-          <div className="pt-10 ">
+          <div className="pt-10 md:pt-20 ">
             <Heading
               className="text-[32px] md:text-[39px] text-text font-bold"
               text="Additional Information"
@@ -192,21 +199,82 @@ const Checkout = () => {
               placeholder="Notes about your order, e.g. special notes for delivery."
             ></textarea>
           </div>
+          <div className="mt-10 md:mt-20">
+            <Heading
+              className="text-[32px] md:text-[39px] text-text font-bold"
+              text="Your order"
+              as="h4"
+            />
+            <div className="border-b border-gray-300 mt-2 md:mt-5"></div>
+            <div className="md:w-2/3">
+              <div className="flex justify-between items-center py-5">
+                <p className="text-text font-bold">Product</p>
+                <p className="text-text">Total</p>
+              </div>
+              <div className="border-b border-gray-300"></div>
+              {data.map((item) => (
+                <>
+                  <div className="flex justify-between items-center py-5">
+                    <p className="text-text font-bold">
+                      <span>{item.title}</span> x <span>{item.quantity}</span>
+                    </p>
+                    <p className="text-text">{`$${
+                      item.price * item.quantity
+                    }`}</p>
+                  </div>
+                </>
+              ))}
+              <div className="border-b border-gray-300"></div>
+              <div className="flex justify-between items-center py-5">
+                <p className="text-text font-bold">Subotal</p>
+                <p className="text-text font-bold">${grandTotal.toFixed(2)}</p>
+              </div>
+              <div className="border-b border-gray-300"></div>
+              <div className="flex justify-between items-center py-5">
+                <p className="text-text font-bold">Total</p>
+                <p className="text-text font-bold">${grandTotal.toFixed(2)}</p>
+              </div>
+            </div>
+            <div className="border-b border-gray-300 mt-5"></div>
+          </div>
+          <div className="pt-10 md:pt-20">
+            <Heading
+              className="text-[32px] md:text-[39px] text-text font-bold"
+              text="Payment"
+              as="h3"
+            />
+            <div className="border-b border-gray-300"></div>
+            <div className="flex items-center gap-x-2 py-5">
+              <input type="radio" name="pay" id="" className="size-4" />
+              <label htmlFor="" className="">
+                Online Pay
+              </label>
+            </div>
+            <div className="flex items-center gap-x-2 py-5">
+              <input type="radio" name="pay" id="" className="size-4" />
+              <label htmlFor="">Cash On Delivery</label>
+            </div>
+            <p className="text-[16px] leading-7 text-text ">
+              Your personal data will be used to process your order, support
+              your experience throughout this website, and for other purposes
+              described in our <span className="font-semibold">privacy policy.</span>
+            </p>
+          </div>
 
-<div className="flex justify-between gap-x-4">
+          <div className="flex justify-between gap-x-4">
             <button
-            type="submit"
-            className="mt-10 text-white bg-[#262626] hover:bg-[#585858] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-fit sm:w-auto px-10 py-3 text-center"
-          >
-            Clear
-          </button>
-          <button
-            type="submit"
-            className="mt-10 text-white bg-gray-500 hover:bg-[#585858] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-10 py-3 text-center"
-          >
-            Submit
-          </button>
-</div>
+              type="submit"
+              className="mt-10 text-white bg-[#262626] active:bg-[#585858] md:hover:bg-[#585858] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-fit sm:w-auto px-10 py-3 text-center"
+            >
+              Clear
+            </button>
+            <button
+              type="submit"
+              className="mt-10 text-white bg-gray-700 active:bg-[#585858] md:hover:bg-[#585858] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-10 py-3 text-center"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </Container>

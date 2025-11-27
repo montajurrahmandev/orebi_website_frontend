@@ -225,7 +225,7 @@ const Footer = () => {
                   }}
                   className="text-[16px] text-[#262626] font-medium active:font-bold cursor-pointer border-none w-full py-1 px-3 bg-gray-300 drop-shadow-md flex items-center justify-between"
                 >
-                  HELP <FaAngleDown className="text-[20px]" />
+                  HELP <FaAngleDown className="text-[20px] " />
                 </button>
                 {showHelpMenu && (
                   <div className="">

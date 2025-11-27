@@ -7,6 +7,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import Heading from "./Heading";
 import { addToCart } from "../features/cart/addToCartSlice";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const Product = ({
   productImg,
@@ -14,8 +15,9 @@ const Product = ({
   productText,
   productPrice,
   productColorName,
-  className
+  className,
 }) => {
+  const [showOption, setShowOption] = useState(false);
   let dispatch = useDispatch();
   const handleAddToCart = () => {
     dispatch(
@@ -27,8 +29,8 @@ const Product = ({
     );
   };
   return (
-    <section className={" bg-gray-200 "+ className}>
-      <div className="relative group">
+    <section className={" bg-gray-200 " + className}>
+      <div className="relative ">
         <Link to={"/product_inside"}>
           <Image imgSrc={productImg} className={`w-full`} />
         </Link>
@@ -36,25 +38,39 @@ const Product = ({
           badgeText={badgeText}
           className={`absolute top-[7%] left-[7%]`}
         />
-        <div className="py-6 px-7 gap-y-3 grid  bg-white absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-100 duration-300 ease-in-out ">
-          <Link
-            to={"/"}
-            className="flex items-center justify-end gap-x-2 text-[16px] text-[#767676] hover:text-text hover:font-bold"
-          >
-            Add to Wish List <FaHeart className="text-[#262626]" />
-          </Link>
-          <Link
-            to={"/"}
-            className="flex items-center justify-end gap-x-2 text-[16px] text-[#767676] hover:text-text hover:font-bold"
-          >
-            Compare <LuRefreshCw className="text-[#262626]" />
-          </Link>
-          <div
-            onClick={handleAddToCart}
-            className="flex items-center justify-end gap-x-2 text-[16px] text-[#767676] hover:text-text hover:font-bold cursor-pointer"
-          >
-            Add to Cart <FaCartShopping className="text-[#262626]" />
+        <div
+          className={`py-6 px-7 bg-white absolute bottom-0 left-0 w-full  duration-300 ease-in-out ${
+            showOption ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div className="gap-y-3 grid m-auto">
+            <Link
+              to={"/"}
+              className="flex items-center justify-end gap-x-2 pr-[20%] text-[16px] text-[#767676] hover:text-text hover:font-bold"
+            >
+              Add to Wish List <FaHeart className="text-[#262626]" />
+            </Link>
+            <Link
+              to={"/"}
+              className="flex items-center justify-end gap-x-2 pr-[20%] text-[16px] text-[#767676] hover:text-text hover:font-bold"
+            >
+              Compare <LuRefreshCw className="text-[#262626]" />
+            </Link>
+            <div
+              onClick={handleAddToCart}
+              className="flex items-center justify-end gap-x-2 pr-[20%] text-[16px] text-[#767676] hover:text-text hover:font-bold cursor-pointer"
+            >
+              Add to Cart <FaCartShopping className="text-[#262626]" />
+            </div>
           </div>
+        </div>
+        <div className="absolute bottom-2 right-2 group">
+          <button
+            onClick={() => setShowOption(!showOption)}
+            className=" bg-black text-white px-3 py-1 rounded-md "
+          >
+            {showOption ? "Close" : "Options"}
+          </button>
         </div>
       </div>
       <div className="py-6 px-1 bg-gray-100">
